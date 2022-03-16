@@ -1203,16 +1203,16 @@ func (ld *loader) loadFromExportData(lpkg *loaderPackage) (*types.Package, error
 	}
 	visit(lpkg.Imports)
 
-	viewLen := len(view) + 1 // adding the self package
+	//viewLen := len(view) + 1 // adding the self package
 	// Parse the export data.
 	// (May modify incomplete packages in view but not create new ones.)
 	tpkg, err := gcexportdata.Read(r, ld.Fset, view, lpkg.PkgPath)
 	if err != nil {
 		return nil, fmt.Errorf("reading %s: %v", lpkg.ExportFile, err)
 	}
-	if viewLen != len(view) {
-		log.Fatalf("Unexpected package creation during export data loading")
-	}
+	//if viewLen != len(view) {
+	//	log.Fatalf("Unexpected package creation during export data loading")
+	//}
 
 	lpkg.Types = tpkg
 	lpkg.IllTyped = false
